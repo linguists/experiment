@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+<meta charset = 'utf-8'>
+<title>Hindi Lexical Decision Task</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="jspsych-5.0.3/jspsych.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-text.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-single-stim.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-single-audio.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-single-audio-delayed-prompt.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-html.js"></script>
+<link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+<style>
+p {class: "center-content";},
+.stimulus { font-size: 60px; }
+</style>
+</head>
+<body>
+<div id="jspsych-target"></div>
+</body>
+<script>
+
+var max_response_time = 12000;
+var post_trial_gap = 1500;
+
+/* create experiment timeline array */
+var timeline = [];
+
+/* define welcome message block */
+var welcome_block = {
+type: "text",
+text: ["<p class='center-content'><u> <strong>Hindi Lexical Decision Primming Task experiment</strong></u></p>" +
+"<div class='center-content'><img src='img/welcome1.jpg'></img>" +
+"<p class='small'><strong>Pess any key to begin</strong></p></div>"
+
+],
+timing_post_trial: 500
+};
+
+
+timeline.push(welcome_block);
+
+
+/* instructions */
+  var instructions = {
+    type: 'instructions',
+    pages: ['This is an instruction Page! : To be updated Shortly'
+    ],
+    allow_keys: false,
+    show_clickable_nav: true
+  }
+
+timeline.push(instructions);
+
+/*
+var trial = {
+    type: 'single-audio-delayed-prompt',
+    stimulus: 'sound/sound.mp3',
+    promptDelay: 8000,
+    prompt: '<img src="img/word.png" style="width:304px;height:228px;">', 
+    response_ends_trial : false,
+    timing_response: max_response_time,
+    choices: ['a', 'l'],
+    is_html: true,
+    data: {
+        word_type: 'light'
+      }, 
+}
+
+timeline.push(trial);
+*/
+
+
+var audio_pres = {
+    type: 'single-stim',
+    //stimulus: '<audio autoplay ="false" controls="controls"><source src="sound/sound.mp3" type="audio/mp3"></audio>',
+    stimulus: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">'+ '<audio autoplay ="false" controls="controls"><source src="sound/sound.mp3" type="audio/mp3"></audio>'+ '</div></div>',
+    prompt: '<p class="center-content">This is a sound Testing.</p>' + '<p class="center-content"> Kindly set sound volumn for the rest of your experiment trials.</p>' + '<p class="center-content">Press ENTER KEY if sound volume is OKAY and Proceed NEXT</p>' + '<p class="center-content"> You can replay if you want.</p>',
+    response_ends_trial: true,
+    timing_response: -1,
+    //timing_post_trial: 5000,
+    choices: ['enter'],
+    is_html: true
+    
+}
+
+timeline.push(audio_pres)
+
+/* instructions */
+  var instructions = {
+    type: 'instructions',
+    pages: ['This is an instruction Page! : To be updated Shortly'
+    ],
+    allow_keys: false,
+    show_clickable_nav: true
+  }
+
+timeline.push(instructions);
+
+
+
+light_frequency_words = ['दाल'];
+light_frequency_sounds = ['sound/1.mp3'];
+light_frequency_offset = [3000];
+
+/* create test trials */
+
+  var light_frequency_trials = [];
+  for (var i in light_frequency_words) {
+    light_frequency_trials.push({
+      type: 'single-audio-delayed-prompt',
+      stimulus: light_frequency_sounds[i],
+      promptDelay: light_frequency_offset[i],
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + light_frequency_words[i] + '</div></div>',
+      response_ends_trial : false,
+      timing_response: max_response_time,
+      choices: ['a', 'l'],
+      is_html: true,
+      data: {
+          word_type: 'light-experimental-items'
+      }, 
+    });
+  }
+
+normal_frequency_words = ['अंगूठी'];
+normal_frequency_sounds = ['sound/3.mp3'];
+normal_frequency_offset = [7000];
+
+  var normal_frequency_trials = [];
+  for (var i in normal_frequency_words) {
+    normal_frequency_trials.push({
+      type: 'single-audio-delayed-prompt',
+      stimulus: normal_frequency_sounds[i],
+      promptDelay: normal_frequency_offset[i],
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + normal_frequency_words[i] + '</div></div>',
+      response_ends_trial : false,
+      timing_response: max_response_time,
+      choices: ['a', 'l'],
+      is_html: true,
+      data: {
+          word_type: 'normal-experimental-items'
+      }, 
+    });
+  }
+
+anomalous_frequency_words = ['शीशा'];
+anomalous_frequency_sounds = ['sound/2.mp3'];
+anomalous_frequency_offset = [7000];
+
+  var anomalous_frequency_trials = [];
+  for (var i in anomalous_frequency_words) {
+    anomalous_frequency_trials.push({
+      type: 'single-audio-delayed-prompt',
+      stimulus: anomalous_frequency_sounds[i],
+      promptDelay: anomalous_frequency_offset[i],
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + anomalous_frequency_words[i] + '</div></div>',
+      response_ends_trial : false,
+      timing_response: max_response_time,
+      choices: ['a', 'l'],
+      is_html: true,
+      data: {
+          word_type: 'anomalous-experimental-items'
+      }, 
+    });
+  }
+
+filler_light_frequency_words = ['दानू'];
+filler_light_frequency_sounds = ['sound/4.mp3'];
+filler_light_frequency_offset = [7000];
+
+  var filler_light_frequency_trials = [];
+  for (var i in filler_light_frequency_words) {
+    filler_light_frequency_trials.push({
+      type: 'single-audio-delayed-prompt',
+      stimulus: filler_light_frequency_sounds[i],
+      promptDelay: filler_light_frequency_offset[i],
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_light_frequency_words[i] + '</div></div>',
+      response_ends_trial : false,
+      timing_response: max_response_time,
+      choices: ['a', 'l'],
+      is_html: true,
+      data: {
+          word_type: 'filler-light-experimental-items'
+      }, 
+    });
+  }
+
+filler_normal_frequency_words = ['तिशात'];
+filler_normal_frequency_sounds = ['sound/6.mp3'];
+filler_normal_frequency_offset = [7000];
+
+
+  var filler_normal_frequency_trials = [];
+  for (var i in filler_normal_frequency_words) {
+    filler_normal_frequency_trials.push({
+      type: 'single-audio-delayed-prompt',
+      stimulus: filler_normal_frequency_sounds[i],
+      promptDelay: filler_normal_frequency_offset[i],
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_normal_frequency_words[i] + '</div></div>',
+      response_ends_trial : false,
+      timing_response: max_response_time,
+      choices: ['a', 'l'],
+      is_html: true,
+      data: {
+          word_type: 'filler-normal-experimental-items'
+      }, 
+    });
+  }
+
+
+filler_anomalous_frequency_words = ['खोमा'];
+filler_anomalous_frequency_sounds = ['sound/5.mp3'];
+filler_anomalous_frequency_offset = [7000];
+
+  var filler_anomalous_frequency_trials = [];
+  for (var i in filler_anomalous_frequency_words) {
+    filler_anomalous_frequency_trials.push({
+      type: 'single-audio-delayed-prompt',
+      stimulus: filler_anomalous_frequency_sounds[i],
+      promptDelay: filler_anomalous_frequency_offset[i],
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_anomalous_frequency_words[i] + '</div></div>',
+      response_ends_trial : false,
+      timing_response: max_response_time,
+      choices: ['a', 'l'],
+      is_html: true,
+      data: {
+          word_type: 'filler-anomalous-experimental-items'
+      }, 
+    });
+  }
+
+  var all_trials = filler_anomalous_frequency_trials.concat(filler_normal_frequency_trials, filler_light_frequency_trials, anomalous_frequency_trials, normal_frequency_trials, light_frequency_trials);
+  all_trials = jsPsych.randomization.shuffle(all_trials);
+
+  timeline = timeline.concat(all_trials);
+
+
+/* instructions */
+  var instructions = {
+    type: 'instructions',
+    pages: ['This is a Thank you Page! : To be updated Shortly'
+    ],
+    allow_keys: false,
+    show_clickable_nav: true
+  }
+
+timeline.push(instructions);
+
+/* start the experiment */
+jsPsych.init({
+display_element: $('#jspsych-target'),
+timeline: timeline,
+fullscreen: false,
+on_finish: function() {
+jsPsych.data.displayData();
+jsPsych.data.localSave('mydata.csv', 'csv');
+}
+});
+
+</script>
+</html>

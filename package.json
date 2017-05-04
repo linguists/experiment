@@ -1,0 +1,37 @@
+{
+  "name": "jspsych-node-server",
+  "version": "0.0.0",
+  "description": "A server for running jsPsych experiments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jspsych/jsPsych-node-server.git"
+  },
+  "keywords": [
+    "jsPsych",
+    "experiment",
+    "science"
+  ],
+  "author": "Sidharth Ranjan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jspsych/jsPsych-node-server/issues"
+  },
+  "homepage": "https://github.com/jspsych/jsPsych-node-server#readme",
+  "dependencies": {
+    "all": "0.0.0",
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.13.4",
+    "gcloud": "^0.33.0",
+    "http": "0.0.0",
+    "mongoose": "^4.9.7",
+    "node-uuid": "1.4.7",
+    "socket.io": "1.4.6",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {}
+}

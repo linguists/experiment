@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset = 'utf-8'>
+<title>Hindi Lexical Decision Task</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="jspsych-5.0.3/jspsych.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-text.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-single-stim.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-single-audio.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-single-audio-delayed-prompt.js"></script>
+<script src="jspsych-5.0.3/plugins/jspsych-html.js"></script>
+<link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+<link href="/css/experiment.css" rel="stylesheet" type="text/css"></link>
+<style>
+p {class: "center-content";},
+.stimulus { font-size: 60px; }
+</style>
+</head>
+<body>
+<div id="jspsych-target"></div>
+</body>
+<script>
+
+var max_response_time = 2500;
+light_frequency_words = ['दाल'];
+
+/* create experiment timeline array */
+var timeline = [];
+
+/* define welcome message block */
+var welcome_block = {
+type: "text",
+text: ["<p class='center-content'><u> <strong>Hindi Lexical Decision Primming Task experiment</strong></u></p>" +
+"<div class='center-content'><img src='img/welcome1.jpg'></img>" +
+"<p class='small'><strong>Pess any key to begin</strong></p></div>"
+
+],
+timing_post_trial: 500
+};
+
+
+timeline.push(welcome_block);
+
+
+/* instructions */
+  var instructions = {
+    type: 'instructions',
+    pages: ['This is an instruction Page! : To be updated Shortly'
+    ],
+    allow_keys: false,
+    show_clickable_nav: true
+  }
+
+timeline.push(instructions);
+
+
+var audio_pres = {
+    type: 'single-stim',
+    //stimulus: '<audio autoplay ="false" controls="controls"><source src="sound/sound.mp3" type="audio/mp3"></audio>',
+    stimulus: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">'+ '<audio autoplay ="false" controls="controls"><source src="sound/with_you.mp3" type="audio/mp3"></audio>'+ '</div></div>',
+    prompt: '<p class="center-content">This is a sound Testing.</p>' + '<p class="center-content"> Kindly set sound volumn for the rest of your experiment trials.</p>' + '<p class="center-content">Press ENTER KEY if sound volume is OKAY and Proceed NEXT</p>' + '<p class="center-content"> You can replay if you want.</p>',
+    response_ends_trial: true,
+    timing_response: -1,
+    //timing_post_trial: 5000,
+    choices: ['enter'],
+    is_html: true
+    
+}
+
+timeline.push(audio_pres)
+
+/* instructions */
+  var instructions = {
+    type: 'instructions',
+    pages: ['This is an instruction Page! : To be updated Shortly'
+    ],
+    allow_keys: false,
+    show_clickable_nav: true
+  }
+
+timeline.push(instructions);
+
+var trial = {
+    type: 'single-audio-delayed-prompt',
+    stimulus: 'sound/with_you.mp3',
+    promptDelay: 8000,
+    //prompt: "Click Here",
+    prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + light_frequency_words[0] + '</div></div>',
+    response_ends_trial : false,
+    timing_response: 13000,
+    choices: ['a', 'l'],
+    is_html: true 
+}
+
+timeline.push(trial);
+
+
+//This is the code for audio in background and then an html page appearing
+
+  // var vtonly = {
+  //   type: 'text',
+  //   randomize_order: true,
+  //   timeline: [
+  //     {timeline:[
+  //       {type: "single-audio",
+  //     stimulus: 'sound/sound.mp3',
+  //     is_html: true,
+  //     prompt: '<p>This is sound trial</p>',
+  //     response_ends_trial: false,
+  //     timing_response: 1000},
+  //       {type: "single-stim",
+  // stimulus:"<div class='left center-content'><img src='img/word.png'></img>",
+  // is_html: true,
+  // choices: ['a','l'],
+  // response_ends_trial: true,}
+  //     ]}
+  //     ]};
+
+/* instructions */
+  var instructions = {
+    type: 'instructions',
+    pages: ['This is a Thank you Page! : To be updated Shortly'
+    ],
+    allow_keys: false,
+    show_clickable_nav: true
+  }
+
+timeline.push(instructions);
+
+/* start the experiment */
+/*
+jsPsych.init({
+display_element: $('#jspsych-target'),
+timeline: timeline,
+fullscreen: false,
+on_finish: function() {
+jsPsych.data.displayData();
+jsPsych.data.localSave('mydata.csv', 'csv');
+}
+});
+*/
+
+///*
+jsPsych.init({
+  display_element: $('#jspsych-target'),
+  timeline: timeline,
+  on_finish: function() {
+  jsPsych.data.displayData(); // displaying collected data on screen
+  jsPsych.data.localSave('mydata.csv', 'csv'); // for local-save
+  console.log(JSON.stringify(jsPsych.data.getData()));  
+    $.ajax({
+      type: "POST",
+      url: "/experiment-data",
+      data: JSON.stringify(jsPsych.data.getData()),
+      contentType: "application/json"
+    })
+    .done(function() {
+      window.location.href = "finish";
+    })
+    .fail(function() {
+      alert("A problem occurred while writing to the database. Please contact the researcher for more information.")
+      window.location.href = "/";
+    })
+
+
+
+
+  }
+});
+
+
+
+
+//*/
+
+// data parameter should be either the value of jsPsych.data()
+// or the parameter that is passed to the on_data_update callback function for the core library
+// jsPsych.data() contains ALL data
+// the callback function will contain only the most recently written data.
+/*
+jsPsych.init({
+        display_element: $('#jspsych-target'),
+        timeline: timeline,
+        on_finish: function() {
+        //jsPsych.data();
+        function save_data(data){
+        var data_table = "my_experiment_table"; // change this for different experiments
+   $.ajax({
+      type:'post',
+      cache: false,
+      url: '/experiment-data', // change this to point to your php file.
+      // opt_data is to add additional values to every row, like a subject ID
+      // replace 'key' with the column name, and 'value' with the value.
+      data: {
+          table: data_table,
+          json: JSON.stringify(data),
+          opt_data: {key: value}
+        },
+      success: function(output) { console.log(output); } // write the result to javascript console
+   });
+}
+
+}
+});
+*/
+
+
+</script>
+</html>
