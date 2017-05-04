@@ -3,8 +3,6 @@ var express = require('express'),
     body_parser = require('body-parser'),
     mongoose = require('mongoose');
 
-var cool = require('cool-ascii-faces');
-
 // --- INSTANTIATE THE APP
 var app = express();
 
