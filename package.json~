@@ -4,7 +4,7 @@
   "description": "A server for running jsPsych experiments",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node your-script.js"
   },
   "repository": {
     "type": "git",
