@@ -10,8 +10,8 @@ var app = express();
 
 
 // --- MONGOOSE SETUP
-mongoose.connect(process.env.CONNECTION || 'mongodb://localhost/jspsych'); 
-//mongoose.connect(process.env.CONNECTION); 
+//mongoose.connect(process.env.CONNECTION || 'mongodb://localhost/jspsych'); //to store data locally on mongodb
+mongoose.connect(process.env.CONNECTION); 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function callback() {
@@ -25,7 +25,8 @@ var Entry = mongoose.model('Entry', emptySchema);
 //    console.log("Listening on port %d", server.address().port);
 //});
 
-app.set('port', (process.env.PORT));
+//app.set('port', (process.env.PORT) || 3000); // To run locally
+app.set('port', (process.env.PORT)); // To run online
 
 //var server = app.listen(app.get('port'),  '0.0.0.0', function() {
 var server = app.listen(app.get('port'), function() {
@@ -58,7 +59,8 @@ app.get('/', function(request, response) {
 });
 
 app.get('/experiment', function(request, response) {
-    response.render('exp_orig.html');
+    //response.render('exp_orig.html');
+    response.render('exp_random.html');
 });
 
 app.get('/finish', function(request, response) {

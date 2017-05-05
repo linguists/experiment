@@ -33,7 +33,7 @@ var timeline = [];
 var welcome_block = {
 type: "text",
 text: ["<p class='center-content'><u> <strong>Hindi Lexical Decision Primming Task experiment</strong></u></p>" +
-"<div class='center-content'><img src='img/welcome1.jpg'></img>" +
+"<div class='center-content'><img src='img/welcome.jpg'></img>" +
 "<p class='small'><strong>Pess any key to begin</strong></p></div>"
 
 ],
@@ -87,7 +87,7 @@ var trial = {
     stimulus: 'sound/with_you.mp3',
     promptDelay: 8000,
     //prompt: "Click Here",
-    prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + light_frequency_words[0] + '</div></div>',
+    prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + light_frequency_words[0] + '</div></div>'  + '<p class="center-content">Press A if it is a Hindi word, L if it is not.</p>',
     response_ends_trial : false,
     timing_response: 13000,
     choices: ['a', 'l'],
@@ -95,28 +95,6 @@ var trial = {
 }
 
 timeline.push(trial);
-
-
-//This is the code for audio in background and then an html page appearing
-
-  // var vtonly = {
-  //   type: 'text',
-  //   randomize_order: true,
-  //   timeline: [
-  //     {timeline:[
-  //       {type: "single-audio",
-  //     stimulus: 'sound/sound.mp3',
-  //     is_html: true,
-  //     prompt: '<p>This is sound trial</p>',
-  //     response_ends_trial: false,
-  //     timing_response: 1000},
-  //       {type: "single-stim",
-  // stimulus:"<div class='left center-content'><img src='img/word.png'></img>",
-  // is_html: true,
-  // choices: ['a','l'],
-  // response_ends_trial: true,}
-  //     ]}
-  //     ]};
 
 /* instructions */
   var instructions = {
@@ -163,9 +141,6 @@ jsPsych.init({
       alert("A problem occurred while writing to the database. Please contact the researcher for more information.")
       window.location.href = "/";
     })
-
-
-
 
   }
 });

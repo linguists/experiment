@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jspsych/jsPsych-node-server.git"
+    "url": "https://github.com/linguists/experiment.git"
   },
   "keywords": [
     "jsPsych",
@@ -16,11 +16,11 @@
     "science"
   ],
   "author": "Sidharth Ranjan",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jspsych/jsPsych-node-server/issues"
+    "url": "https://github.com/linguists/experiment/issues"
   },
-  "homepage": "https://github.com/jspsych/jsPsych-node-server#readme",
+  "homepage": "https://github.com/linguists/experiment",
   "dependencies": {
     "all": "0.0.0",
     "body-parser": "^1.17.1",

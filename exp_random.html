@@ -12,6 +12,7 @@
 <script src="jspsych-5.0.3/plugins/jspsych-single-audio-delayed-prompt.js"></script>
 <script src="jspsych-5.0.3/plugins/jspsych-html.js"></script>
 <link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+<link href="/css/experiment.css" rel="stylesheet" type="text/css"></link>
 <style>
 p {class: "center-content";},
 .stimulus { font-size: 60px; }
@@ -23,7 +24,7 @@ p {class: "center-content";},
 <script>
 
 var max_response_time = 12000;
-var post_trial_gap = 1500;
+var post_trial_gap = 800;
 
 /* create experiment timeline array */
 var timeline = [];
@@ -32,7 +33,7 @@ var timeline = [];
 var welcome_block = {
 type: "text",
 text: ["<p class='center-content'><u> <strong>Hindi Lexical Decision Primming Task experiment</strong></u></p>" +
-"<div class='center-content'><img src='img/welcome1.jpg'></img>" +
+"<div class='center-content'><img src='img/welcome.jpg'></img>" +
 "<p class='small'><strong>Pess any key to begin</strong></p></div>"
 
 ],
@@ -76,7 +77,7 @@ timeline.push(trial);
 var audio_pres = {
     type: 'single-stim',
     //stimulus: '<audio autoplay ="false" controls="controls"><source src="sound/sound.mp3" type="audio/mp3"></audio>',
-    stimulus: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">'+ '<audio autoplay ="false" controls="controls"><source src="sound/sound.mp3" type="audio/mp3"></audio>'+ '</div></div>',
+    stimulus: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">'+ '<audio autoplay ="false" controls="controls"><source src="sound/with_you.mp3" type="audio/mp3"></audio>'+ '</div></div>',
     prompt: '<p class="center-content">This is a sound Testing.</p>' + '<p class="center-content"> Kindly set sound volumn for the rest of your experiment trials.</p>' + '<p class="center-content">Press ENTER KEY if sound volume is OKAY and Proceed NEXT</p>' + '<p class="center-content"> You can replay if you want.</p>',
     response_ends_trial: true,
     timing_response: -1,
@@ -103,7 +104,7 @@ timeline.push(instructions);
 
 light_frequency_words = ['दाल'];
 light_frequency_sounds = ['sound/1.mp3'];
-light_frequency_offset = [3000];
+light_frequency_offset = [7000];
 
 /* create test trials */
 
@@ -113,7 +114,7 @@ light_frequency_offset = [3000];
       type: 'single-audio-delayed-prompt',
       stimulus: light_frequency_sounds[i],
       promptDelay: light_frequency_offset[i],
-      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + light_frequency_words[i] + '</div></div>',
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + light_frequency_words[i] + '</div></div>'  + '<p class="center-content">Press A if it is a Hindi word, L if it is not.</p>',
       response_ends_trial : false,
       timing_response: max_response_time,
       choices: ['a', 'l'],
@@ -134,7 +135,7 @@ normal_frequency_offset = [7000];
       type: 'single-audio-delayed-prompt',
       stimulus: normal_frequency_sounds[i],
       promptDelay: normal_frequency_offset[i],
-      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + normal_frequency_words[i] + '</div></div>',
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + normal_frequency_words[i] + '</div></div>'  + '<p class="center-content">Press A if it is a Hindi word, L if it is not.</p>',
       response_ends_trial : false,
       timing_response: max_response_time,
       choices: ['a', 'l'],
@@ -155,7 +156,7 @@ anomalous_frequency_offset = [7000];
       type: 'single-audio-delayed-prompt',
       stimulus: anomalous_frequency_sounds[i],
       promptDelay: anomalous_frequency_offset[i],
-      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + anomalous_frequency_words[i] + '</div></div>',
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + anomalous_frequency_words[i] + '</div></div>'  + '<p class="center-content">Press A if it is a Hindi word, L if it is not.</p>',
       response_ends_trial : false,
       timing_response: max_response_time,
       choices: ['a', 'l'],
@@ -176,7 +177,7 @@ filler_light_frequency_offset = [7000];
       type: 'single-audio-delayed-prompt',
       stimulus: filler_light_frequency_sounds[i],
       promptDelay: filler_light_frequency_offset[i],
-      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_light_frequency_words[i] + '</div></div>',
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_light_frequency_words[i] + '</div></div>'  + '<p class="center-content">Press A if it is a Hindi word, L if it is not.</p>',
       response_ends_trial : false,
       timing_response: max_response_time,
       choices: ['a', 'l'],
@@ -198,7 +199,7 @@ filler_normal_frequency_offset = [7000];
       type: 'single-audio-delayed-prompt',
       stimulus: filler_normal_frequency_sounds[i],
       promptDelay: filler_normal_frequency_offset[i],
-      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_normal_frequency_words[i] + '</div></div>',
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_normal_frequency_words[i] + '</div></div>'  + '<p class="center-content">Press A if it is a Hindi word, L if it is not.</p>',
       response_ends_trial : false,
       timing_response: max_response_time,
       choices: ['a', 'l'],
@@ -220,7 +221,7 @@ filler_anomalous_frequency_offset = [7000];
       type: 'single-audio-delayed-prompt',
       stimulus: filler_anomalous_frequency_sounds[i],
       promptDelay: filler_anomalous_frequency_offset[i],
-      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_anomalous_frequency_words[i] + '</div></div>',
+      prompt: '<div style="top: 40%; left: 40%; position: absolute;"><div style="font-size:128px;">' + filler_anomalous_frequency_words[i] + '</div></div>'  + '<p class="center-content">Press A if it is a Hindi word, L if it is not.</p>',
       response_ends_trial : false,
       timing_response: max_response_time,
       choices: ['a', 'l'],
@@ -249,6 +250,7 @@ filler_anomalous_frequency_offset = [7000];
 timeline.push(instructions);
 
 /* start the experiment */
+/*
 jsPsych.init({
 display_element: $('#jspsych-target'),
 timeline: timeline,
@@ -258,6 +260,32 @@ jsPsych.data.displayData();
 jsPsych.data.localSave('mydata.csv', 'csv');
 }
 });
+*/
+
+jsPsych.init({
+  display_element: $('#jspsych-target'),
+  timeline: timeline,
+  on_finish: function() {
+  jsPsych.data.displayData(); // displaying collected data on screen
+  //jsPsych.data.localSave('mydata.csv', 'csv'); // for local-save
+  console.log(JSON.stringify(jsPsych.data.getData()));  
+    $.ajax({
+      type: "POST",
+      url: "/experiment-data",
+      data: JSON.stringify(jsPsych.data.getData()),
+      contentType: "application/json"
+    })
+    .done(function() {
+      window.location.href = "finish";
+    })
+    .fail(function() {
+      alert("A problem occurred while writing to the database. Please contact the researcher for more information.")
+      window.location.href = "/";
+    })
+
+  }
+});
+
 
 </script>
 </html>
