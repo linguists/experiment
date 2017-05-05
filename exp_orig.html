@@ -148,7 +148,7 @@ jsPsych.init({
   timeline: timeline,
   on_finish: function() {
   jsPsych.data.displayData(); // displaying collected data on screen
-  jsPsych.data.localSave('mydata.csv', 'csv'); // for local-save
+  //jsPsych.data.localSave('mydata.csv', 'csv'); // for local-save
   console.log(JSON.stringify(jsPsych.data.getData()));  
     $.ajax({
       type: "POST",
