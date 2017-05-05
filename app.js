@@ -41,8 +41,8 @@ app.use('/img', express.static(__dirname + "/img"));
 app.use('/sound', express.static(__dirname + "/sound"));
 
 // --- BODY PARSING MIDDLEWARE
-//app.use(body_parser.json()); // to support JSON-encoded bodies
-app.use(body_parser.urlencoded({ extended: false }))
+app.use(body_parser.json()); // to support JSON-encoded bodies
+//app.use(body_parser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(body_parser.json());
