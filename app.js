@@ -10,7 +10,8 @@ var app = express();
 
 
 // --- MONGOOSE SETUP
-mongoose.connect(process.env.CONNECTION || 'mongodb://localhost/jspsych'); 
+//mongoose.connect(process.env.CONNECTION || 'mongodb://localhost/jspsych'); 
+mongoose.connect(process.env.CONNECTION); 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function callback() {
@@ -20,8 +21,15 @@ db.once('open', function callback() {
 var emptySchema = new mongoose.Schema({}, { strict: false });
 var Entry = mongoose.model('Entry', emptySchema);
 
-var server = app.listen(3000, function(){
-    console.log("Listening on port %d", server.address().port);
+//var server = app.listen(3000, function(){
+//    console.log("Listening on port %d", server.address().port);
+//});
+
+app.set('port', (process.env.PORT));
+
+//var server = app.listen(app.get('port'),  '0.0.0.0', function() {
+var server = app.listen(app.get('port'), function() {
+  console.log('Node app.js is running on port', app.get('port'));
 });
 
 
