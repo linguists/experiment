@@ -10,8 +10,8 @@ var app = express();
 
 
 // --- MONGOOSE SETUP
-//mongoose.connect(process.env.CONNECTION || 'mongodb://localhost/jspsych'); 
-mongoose.connect(process.env.CONNECTION); 
+mongoose.connect(process.env.CONNECTION || 'mongodb://localhost/jspsych'); 
+//mongoose.connect(process.env.CONNECTION); 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function callback() {
@@ -41,8 +41,8 @@ app.use('/img', express.static(__dirname + "/img"));
 app.use('/sound', express.static(__dirname + "/sound"));
 
 // --- BODY PARSING MIDDLEWARE
-app.use(body_parser.json()); // to support JSON-encoded bodies
-//app.use(body_parser.urlencoded({ extended: false }))
+//app.use(body_parser.json()); // to support JSON-encoded bodies
+app.use(body_parser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(body_parser.json());
